@@ -12,8 +12,13 @@ const writeLock = require('./writeLock');
 const isFileOverridden = require('./isFileOverridden');
 const getFileSum = require('./getFileSum');
 
+// TODO: Separate targeting files to copy with the actual copy and lock write
+//       This will allow in the cli to be like "are you sure you want to do x?"
+// TODO: With the above we should warn the user if they are about to overwrite
+//       some files which weren't previously framed.
+
 /** Copy files from our source frame to our project destination */
-module.exports = async function copyFrame(project, frameOverride, force = forceOverride, forceOverride) {
+module.exports = async function copyFrame(project, frameOverride, force, forceOverride, dryRun) {
   // TODO: Frame is configured usually
   // TODO: If frame name/path+version hasn't changed we do nothing
   const {config = {}} = await cosmiconfig('frame').load(project);
@@ -43,7 +48,7 @@ module.exports = async function copyFrame(project, frameOverride, force = forceO
 
   const files = await findFrameFiles(source, exclude);
   const copyArgs = files.map(
-    file => [file, path.join(source, file), path.join(project, file), data]
+    file => [file, path.join(source, file), path.join(project, file), data, dryRun]
   );
 
   const filteredArgs = forceOverride ? copyArgs : await asyncFilter(
@@ -62,7 +67,9 @@ module.exports = async function copyFrame(project, frameOverride, force = forceO
   );
   copiedFiles.forEach(([file]) => log.info(`Copied file`, file));
 
-  const write = await writeLock(project, framePkg.name, framePkg.version, copiedFiles, skippedFiles);
+  const write = dryRun
+    ? true
+    : await writeLock(project, framePkg.name, framePkg.version, copiedFiles, skippedFiles);
   log.info('Wrote lock file');
   return write;
 }
