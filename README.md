@@ -17,11 +17,11 @@ Create one source (a **frame**) and replicate that across all your desired proje
 A frame is simply a npm package with *any* files (seriously anything). These files act as the template for your project.
 
 ```
-mkdir my-oss-frame
-cd my-oss-frame
-npm init
-touch .eslintrc .gitignore webpack.config.js LICENSE.md README.md
-npm publish
+$ mkdir my-oss-frame
+$ cd my-oss-frame
+$ npm init
+$ touch .eslintrc .gitignore webpack.config.js LICENSE.md README.md
+$ npm publish
 ```
 
 #### 2. Initialise or update your project with your frame.
@@ -31,8 +31,8 @@ All files from your frame are copied over into your project. Woo, boilerplate!
 We will also preprocess these files as [mustache](https://www.npmjs.com/package/mustache) templates using [your data](#template-data).
 
 ```
-cd my-project
-frame my-oss-frame
+$ cd my-project
+$ frame my-oss-frame
 ```
 
 #### 3. Update your frame.
@@ -40,10 +40,10 @@ frame my-oss-frame
 Just modify any of your frame files (or add new ones!) and publish as a new package version.
 
 ```
-cd my-oss-frame
-touch .newconfig
-npm version minor
-npm publish
+$ cd my-oss-frame
+$ touch .newconfig
+$ npm version minor
+$ npm publish
 ```
 
 #### 4. Install and update the new frame in your project
@@ -53,9 +53,9 @@ The newly updated files will be copied over.
 If you updated any of your project files which were sourced from your frame we treat these as "ejected" files. We do this by keeping track of the file hashes in frame versions.
 
 ```
-cd my-project
-npm install my-oss-frame@newverison
-frame
+$ cd my-project
+$ npm install my-oss-frame@newverison
+$ frame
 ```
 
 *Note: You can and should commit the files which are persisted into your project.*
