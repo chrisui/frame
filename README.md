@@ -60,6 +60,12 @@ $ frame
 
 *Note: You can and should commit the files which are persisted into your project.*
 
+## Install
+
+```
+npm install -g frame
+```
+
 ## Template Data
 
 Any data found in your [configuration](https://github.com/davidtheclark/cosmiconfig) will be available in your files which are all treated as [mustache](https://www.npmjs.com/package/mustache) templates. We also add `pkg` which is your projects `package.json` data!
