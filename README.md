@@ -46,7 +46,7 @@ npm version minor
 npm publish
 ```
 
-#### 4. Install and update the new frame in your project
+#### 4. Install and update the new frame in your project
 
 The newly updated files will be copied over.
 
