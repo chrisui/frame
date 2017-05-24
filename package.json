@@ -1,6 +1,6 @@
 {
   "name": "frame",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Persisted boilerplates for all your projects",
   "main": "src/index.js",
   "bin": {
