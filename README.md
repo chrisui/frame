@@ -4,7 +4,7 @@ Persisted boilerplates for all your projects.
 
 ## What and why?
 
-Fed up of copying files everywhere between projects? Fed up of copying them everywhere *again* when you update something? 
+Fed up of copying files everywhere between projects? Fed up of copying them *again* when you update something? 
 
 This project is a middle-ground between an initial project boilerplate (ie. *one*-time generation of files like `yeoman`) and an entirely black-boxed environment (ie. limited exposed scripts like `create-react-app`).
 
@@ -20,6 +20,7 @@ A frame is simply a npm package with *any* files (seriously anything). These fil
 mkdir my-oss-frame
 cd my-oss-frame
 npm init
+touch .eslintrc .gitignore webpack.config.js LICENSE.md README.md
 npm publish
 ```
 
